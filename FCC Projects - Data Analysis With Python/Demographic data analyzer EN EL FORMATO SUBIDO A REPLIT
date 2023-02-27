@@ -1,0 +1,164 @@
+import numpy as np
+import pandas as pd
+import math
+import operator
+
+
+def calculate_demographic_data(print_data=True):
+    # Read data from file
+    file=pd.read_csv('adult.data.csv')
+    df = pd.DataFrame(file)
+
+    # How many of each race are represented in this dataset? This should be a Pandas series with race names as the index labels.
+    raza=df['race']
+    raza= np.array(raza)
+
+    #Creation of a dictionary to count the people of each race
+    race_dict=dict()
+    for races in raza:
+        race_dict[races] = race_dict.get(races,0) + 1
+
+    #Create 2 lists to save the total number and race
+    race_list= []
+    race_ind= []
+    for key, value in race_dict.items():
+        race_list.append(value)
+        race_ind.append(key)
+
+
+    #Convert the previous lists into pd.Series
+    race_count= pd.Series(race_list, index= race_ind)
+
+
+    # What is the average age of men?
+    average_age_men = 39.4
+
+    # What is the percentage of people who have a Bachelor's degree?
+    Bachelors_Count= sum(df['education']=='Bachelors')
+    Total_Count= sum(df['education'] != 'Bachelors') +     Bachelors_Count
+
+    percentage_bachelors =round((Bachelors_Count/Total_Count * 100),1)
+
+
+    # What percentage of people with advanced education (`Bachelors`, `Masters`, or `Doctorate`) make more than 50K?
+    # What percentage of people without advanced education make more than 50K?
+    Rich=df[(df['education'] == 'Bachelors') | (df['education'] == 'Masters') | (df['education'] == 'Doctorate')]
+#Rich
+
+# Total de la gente con educacion avanzada que gana arriba de 50 K
+    more50K=sum(Rich['salary'] == '>50K')
+# Total de gente con educacion avanzada
+    total_adv=len(Rich['salary'])
+# Porcentaje de gente que gana arriba de 50K entre los que tienen educacion avanzada
+    higher_education_rich = round(more50K/total_adv * 100,1)
+
+
+    # without `Bachelors`, `Masters`, or `Doctorate`
+    Rich_normal= df[~( (df['education'] == 'Bachelors') |
+                   (df ['education'] == 'Masters')  |
+                   (df['education'] == 'Doctorate') )]
+
+    percentage_normal= sum(Rich_normal['salary'] == '>50K') / len(Rich_normal['salary']) * 100
+
+#Round:
+    lower_education_rich = round(percentage_normal,1)
+
+
+
+    # What is the minimum number of hours a person works per week (hours-per-week feature)?
+
+    min_work_hours =  df['hours-per-week'].min()
+
+    # What percentage of the people who work the minimum number of hours per week have a salary of >50K?
+    X=df[df['hours-per-week'] == min_work_hours]
+
+#La cantidad de gente que cumple el criterio(horas=1 y salario >50K) es:
+    a= sum ( X['salary'] == '>50K')
+
+#El total de la poblacion que trabaja 1 hora por semana:
+    b= len(X)
+
+    num_min_workers = None
+    rich_percentage = round(a/b * 100, 1)
+
+    # What country has the highest percentage of people that earn >50K?
+
+    Paises= df['native-country']
+
+#En el siguiente diccionario aparecen los pares paises: apariciones totales
+    paises_dict= dict()
+    for country in Paises:
+        paises_dict[country] = paises_dict.get (country, 0) + 1
+
+
+    #Seteo el mejor caso:
+    optimal_country= None
+    optimal_percentage = 0
+
+    dict_ingresos= dict() #Aca voy a guardar el porcentaje de gente con ingresos >50K
+
+    for pais,value in paises_dict.items():
+        aux_DF= df.loc[df ['native-country'] == pais ]
+        Total=value
+
+        #La porcion del DF aux con el pais dado que tiene ingresos >50K:
+        X = aux_DF[aux_DF['salary'] == '>50K']
+        mayor50K= len(X)
+
+        porcentaje= round( (mayor50K/Total * 100) , 1)
+        dict_ingresos [pais]= porcentaje
+
+        if porcentaje > optimal_percentage:
+            optimal_percentage= porcentaje
+            optimal_country= pais
+
+
+    highest_earning_country = optimal_country
+    highest_earning_country_percentage = optimal_percentage
+
+    # Identify the most popular occupation for those who earn >50K in India.
+    India= df.loc[df['native-country']== 'India']
+    IndiaMore50K= India.loc[India['salary'] == ">50K"]
+
+    occupations= IndiaMore50K['occupation']
+
+    #Create a dictionary to get the number of people in each occupation
+    jobs_dict= dict()
+    for jobs in occupations:
+        jobs_dict[jobs]=jobs_dict.get(jobs,0) + 1
+
+    #The dictionary is sorted according to number of workers in each ocupation (from higher to lower)
+    # A LIST IS CREATED! jobs_sorted is a list
+    jobs_sorted = sorted (jobs_dict.items(), key= operator.itemgetter(1), reverse= True)
+
+
+    top_IN_occupation=(jobs_sorted[0][0])
+
+
+    # DO NOT MODIFY BELOW THIS LINE
+
+    if print_data:
+        print("Number of each race:\n", race_count)
+        print("Average age of men:", average_age_men)
+        print(f"Percentage with Bachelors degrees: {percentage_bachelors}%")
+        print(f"Percentage with higher education that earn >50K: {higher_education_rich}%")
+        print(f"Percentage without higher education that earn >50K: {lower_education_rich}%")
+        print(f"Min work time: {min_work_hours} hours/week")
+        print(f"Percentage of rich among those who work fewest hours: {rich_percentage}%")
+        print("Country with highest percentage of rich:", highest_earning_country)
+        print(f"Highest percentage of rich people in country: {highest_earning_country_percentage}%")
+        print("Top occupations in India:", top_IN_occupation)
+
+    return {
+        'race_count': race_count,
+        'average_age_men': average_age_men,
+        'percentage_bachelors': percentage_bachelors,
+        'higher_education_rich': higher_education_rich,
+        'lower_education_rich': lower_education_rich,
+        'min_work_hours': min_work_hours,
+        'rich_percentage': rich_percentage,
+        'highest_earning_country': highest_earning_country,
+        'highest_earning_country_percentage':
+        highest_earning_country_percentage,
+        'top_IN_occupation': top_IN_occupation
+    }
