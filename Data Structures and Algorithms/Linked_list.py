@@ -10,15 +10,17 @@ particular value.
 Then, use "Test Run" and "Submit" to run the test cases
 at the bottom."""
 
+
 class Element(object):
     def __init__(self, value):
         self.value = value
         self.next = None
 
+
 class LinkedList(object):
     def __init__(self, head=None):
         self.head = head
-        
+
     def append(self, new_element):
         current = self.head
         if self.head:
@@ -27,34 +29,32 @@ class LinkedList(object):
             current.next = new_element
         else:
             self.head = new_element
-            
+
     def get_position(self, position):
         """Get an element from a particular position.
         Assume the first position is "1".
         Return "None" if position is not in the list."""
-        
-        
-        
+
         """while current_position < position:
             current.next
             current_position += 1
             if current.next == None:
                 beak
-        """    
-        
+        """
+
         return None
-    
+
     def insert(self, new_element, position):
         """Insert a new node at the given position.
         Assume the first position is "1".
         Inserting at position 3 means between
         the 2nd and 3rd elements."""
         pass
-    
-    
+
     def delete(self, value):
         """Delete the first node with a given value."""
         pass
+
 
 # Test cases
 # Set up some Elements
@@ -64,18 +64,17 @@ e3 = Element(3)
 e4 = Element(4)
 
 # Start setting up a LinkedList
-#LL_vacia = LinkedList() # OBJETO LL VACIO
+# LL_vacia = LinkedList() # OBJETO LL VACIO
 ll = LinkedList(e1)
 ll.append(e2)
 ll.append(e3)
 
 
-
 # Test get_position
 # Should print 3
-print (ll.head.next.next.value)
+print(ll.head.next.next.value)
 # Should also print 3
-print (ll.get_position(3).value)
+print(ll.get_position(3).value)
 
 """# Test insert
 ll.insert(e4,3)
