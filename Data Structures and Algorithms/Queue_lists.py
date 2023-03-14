@@ -4,9 +4,9 @@ you'd like! Try to write each one in as
 few lines as possible.
 Make sure you pass the test cases too!"""
 
-#================================================
+# ================================================
 # EJERCICIO APROBADO
-#================================================
+# ================================================
 
 
 class Queue:
