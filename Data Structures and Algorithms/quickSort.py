@@ -10,11 +10,10 @@ def quicksort(array):
     pivot_displacement = 0  # The first pivot is the last element
 
     for i in range(len(array) - pivot_displacement):
-        
+
         while pivot < array[i]:
             pivot_position = (len(array) - 1) - pivot_displacement
-            
-            
+
             if abs(pivot_position - i) > 1:
 
                 array[pivot_position] = array[i]  # Position where pivot was
@@ -25,23 +24,20 @@ def quicksort(array):
 
                 print(array, pivot_displacement, pivot_position, i, pivot)
                 pivot_displacement += 1
-                
 
             elif abs(pivot_position - i) == 1:
                 array[pivot_position] = array[i]
                 array[i] = pivot
-                
-                
+
                 pivot_displacement += 1
                 print(array, pivot_displacement, pivot_position, i, pivot, "ACA")
-                
 
             """else:
                 pivot = array[i-2] if i>=1 else array[0]
                 i = 0
                 
                 print(array, pivot_displacement, pivot_position, i, pivot, array[i], "en else")
-                time.sleep(2)"""        
+                time.sleep(2)"""
 
     return array
 
