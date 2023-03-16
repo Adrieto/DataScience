@@ -9,10 +9,11 @@ Atlanta (USA, North America)
 Cairo (Egypt, Africa)
 Shanghai (China, Asia)"""
 
-locations = {'North America': {'USA': ["Atlanta", 'Mountain View' ]},
-             'Asia': {"India": "Bangalore", "China": "Shangai"},
-             'Africa': {"Egypt": "Cairo"}
-             }
+locations = {
+    "North America": {"USA": ["Atlanta", "Mountain View"]},
+    "Asia": {"India": "Bangalore", "China": "Shangai"},
+    "Africa": {"Egypt": "Cairo"},
+}
 
 """Print the following (using "print").
 1. A list of all cities in the USA in
@@ -28,9 +29,13 @@ American City
 Asian City - Country
 Asian City - Country"""
 
-print (1)
-print (locations["North America"]["USA"][0])
-print (locations["North America"]["USA"][1])
-print (2)
-print (locations["Asia"]["India"])
-print (locations["Asia"]["China"])
+lista = locations["Asia"].items()
+print(1)
+print(locations["North America"]["USA"][0])
+print(locations["North America"]["USA"][1])
+print(2)
+# print (lista[0][1], " - ", locations["Asia"].keys())
+# print (locations["Asia"]["China"])
+
+for (k, v) in locations["Asia"].items():
+    print(v, " - ", k)

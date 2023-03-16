@@ -25,7 +25,7 @@ def quicksort(array):
 
         elif right_to_left - left_to_right == 0:  ### Same position
             break_point = right_to_left
-            
+
             print("entra elif")
 
             break  ###
@@ -51,7 +51,7 @@ def loop(array, pivot, left_to_right, right_to_left):
             right_to_left -= 1
             if right_to_left == left_to_right:
                 return array, pivot, left_to_right, right_to_left
-            
+
         left_to_right += 1
 
 
