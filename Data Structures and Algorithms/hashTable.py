@@ -15,9 +15,11 @@ class HashTable(object):
         if self.table[hash_value] == None:
             self.table[hash_value] = string
         elif isinstance(self.table[hash_value], str):  # there's one non-None element
-            self.table[hash_value] = [self.table[hash_value]] # the string is put inside a bucket -a list-
+            self.table[hash_value] = [
+                self.table[hash_value]
+            ]  # the string is put inside a bucket -a list-
             (self.table[hash_value]).append(string)
-        elif isinstance(self.table[hash_value], list): 
+        elif isinstance(self.table[hash_value], list):
             (self.table[hash_value]).append(string)
 
     def lookup(self, string):
@@ -40,7 +42,7 @@ class HashTable(object):
             return hash_value
 
         else:
-            return -1 # The string is not in the hash table
+            return -1  # The string is not in the hash table
 
     def calculate_hash_value(self, string):
         """Helper function to calulate a
