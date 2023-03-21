@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-#  ESTE PROGRAMA QUEDÓ INCOMPLETO
+#                       ESTE PROGRAMA QUEDÓ INCOMPLETO
 #-------------------------------------------------------------------------------
 
 class Node(object):
@@ -16,15 +16,31 @@ class BinaryTree(object):
         """Return True if the value
         is in the tree, return
         False otherwise."""
-        return False
+        if self.root != None:                       
+            if find_val == self.root.value:
+                return True
+            else:
+                result = self._search(find_val, self.root)
+        
+        #elif self.root.value != find_val:
+        #    self._search(find_val, self.root.left)
+        #    return result == find_val
+            
+        #return False
+    
+    def _search(self, val, node):
+        if val == node.value:
+            return True
 
     def print_tree(self):
         """Print out all tree nodes
         as they are visited in
         a pre-order traversal."""
-        traversal = ""
-        self.preorder_print(self.root, traversal)
+             
+        traversal = self.preorder_print(self.root)
+        traversal = traversal[:-1] # we get rid of the last "-" in the string
         
+        # The output is reformated    
         
         return traversal
 
@@ -33,33 +49,24 @@ class BinaryTree(object):
         recursive search solution."""
         return False
 
-    def preorder_print(self, start, traversal):
+
+    def preorder_print(self, start):
         """Helper method - use this to create a recursive print solution."""
-        # Start = root , traversal = "pre-order"
+        # Start = root 
         
         current_node = start
-        aux_list = []
 
         if current_node is None:
-            #print(traversal)
-            return traversal
+                        
+            return ""
         else:
-            #traversal = traversal + str(current_node.value) + "-" 
-            self.preorder_print(current_node.left, traversal)
-            if not current_node.left in aux_list:
-                aux_list.append(current_node.left)
-                #traversal = "-".join(aux_list)
-            self.preorder_print(current_node.right, traversal)
-            if not current_node.left in aux_list:
-                aux_list.append(current_node.right)
-
-                #traversal = "-".join(aux_list)
-        return aux_list
-
-
-
-
-
+            lista = ""
+            lista += str(current_node.value) + "-"
+            lista += str(self.preorder_print(current_node.left))
+            lista += str(self.preorder_print(current_node.right))
+            
+            return lista
+        
 
 
 # Set up tree
