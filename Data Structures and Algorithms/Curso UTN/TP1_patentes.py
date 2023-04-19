@@ -15,14 +15,16 @@
 patente = "ASF8249" # Uru 
 
 if  patente[0:2].isalpha() and patente[2:5].isdecimal() and patente[5:7].isalpha():
-    print("patente argentina")
+    pais_procedencia = "argentina"
 elif patente[0:2].isalpha() and patente[2:7].isdecimal():
-    print("patente boliviana")
+    pais_procedencia = "bolivia"
 elif patente[0:3].isalpha() and patente[3].isdecimal() and patente[4].isalpha() and patente[5:7].isdecimal():
-    print("patente brasilera")
+    pais_procedencia = "brasil"
 elif patente[0:4].isalpha() and patente[4:7].isdecimal():
-    print("patente paraguaya")
+    pais_procedencia = "paraguay"
 elif patente[0:3].isalpha() and patente[3:7].isdecimal():
-    print("patente uruguaya")
+    pais_procedencia = "uruguay"
 else:
-    print("Otra")
+    pais_procedencia = "otro"
+
+print(pais_procedencia)
