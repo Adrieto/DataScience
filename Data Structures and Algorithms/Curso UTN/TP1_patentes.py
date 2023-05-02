@@ -8,7 +8,7 @@
 # Uruguay:   LLLNNNN     "ASF8492"
 # Otro:      Cualquier otro formato
 
-patente = input("Ingrese la patente del vehìculo: ")
+patente = input("Ingrese la patente del vehículo: ")
 
 # Chequeamos que el origen de las patentes:
 if len(patente) == 7 and patente[0:2].isalpha() and patente[2:5].isdigit() and patente[5:7].isalpha():
@@ -94,8 +94,8 @@ else:
 # Impresión del ticket:
 print(f"\n\n  TICKET ESTACION DE PEAJE - {cabina}")
 print(f"Pais de procedencia del vehículo: {pais_procedencia}")
-print(f"Importe básico para el vehículo: ${importe_basico}")
-print(f"Valor final del ticket: ${valor_final_del_ticket}")
+print(f"Importe básico para el vehículo: $ {importe_basico}")
+print(f"Valor final del ticket: $ {valor_final_del_ticket}")
 
 if distancia > 0:
     promedio = valor_final_del_ticket/distancia
