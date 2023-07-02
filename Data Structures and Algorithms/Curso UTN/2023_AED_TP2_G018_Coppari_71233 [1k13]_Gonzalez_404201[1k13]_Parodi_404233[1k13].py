@@ -9,15 +9,15 @@
 # Chile:      LLLLNN     " LANY87"
 # Otro:      Cualquier otro formato
 
-archivo = open("peaje25.txt")
-# archivo = open("peaje.txt") # ESTE ES EL ARCHIVO QUE SE DEBE ABRIR AL ENTREGAR !!!!! OJO CON ESTO
+archivo = open("peajes.txt")
 lines = archivo.readlines()
 archivo.close()
 
 # Contadores
-carg = cbol = cbra = cchi = cpar = curu = cotr = 0
+carg = cbol = cbra = cchi = cpar = curu = cotr = disAB = cantAB = 0
 distancia_carg_por_brasil = 0
-cpp = 0 #Frecuencia de aparicion
+cdpp = 0 #Frecuencia de aparicion
+cpp = 0 #Frecuencia de aparicion primera patente
 
 # Acumuladores
 imp_acu_total = 0
@@ -34,7 +34,7 @@ elif "ES" in lines[0]:
 
 
 lines = lines[1:]      # Encabezado elimindado --> Lineas con patentes
-print(lines)
+
 for line in lines:
     patente = line[0:7]
     tipo_de_vehiculo = int(line[7])
@@ -45,7 +45,7 @@ for line in lines:
     #print(f"{patente} + {tipo_vehiculo} + {forma_pago} + {pais_procedencia} + {kms}")
 
     # Vehículos por país
-    # Chequeamos que el origen de las patentes:
+    # Chequeamos el origen de las patentes:
     if len(patente) == 7 and patente[0:2].isalpha() and patente[2:5].isdigit() and patente[5:7].isalpha():
         pais_procedencia = "Argentina"
         carg += 1
@@ -74,7 +74,7 @@ for line in lines:
         pais_procedencia = "Otro"
         cotr += 1
 
-    # Pais de donde se encuentra la cabina de peaje
+    # Pais en donde se encuentra la cabina de peaje
     if pais_de_la_cabina == 0:
         cabina = "Argentina"
     elif pais_de_la_cabina == 1:
@@ -102,13 +102,39 @@ for line in lines:
     else:
         importe_basico = importe_base
 
-    # Importe final del ticket, segun forma de pago
+    # Importe final del ticket, según forma de pago
     if forma_de_pago == 2:
         importe_final_del_ticket = importe_basico - (0.1 * importe_basico)
     else:
         importe_final_del_ticket = importe_basico
 
+    # Mayor importe final de ticket y patente de ese ticket
+    if importe_final_del_ticket > mayimp:
+        mayimp = importe_final_del_ticket
+        maypat = patente
+
     imp_acu_total += importe_final_del_ticket
+
+    # Cantidad de patentes procesadas (4)
+    if patente:
+        cdpp += 1
+        if cdpp == 1:
+            primera = patente
+        if patente == primera:
+            cpp += 1
+
+    # Cantidad de vehículos de Argentina en la cabina de Brasil y la distancia que recorrieron
+    if pais_procedencia == "Argentina" and pais_de_la_cabina == 2:
+        disAB += distancia
+        cantAB += 1
+
+
+porc = round(cotr * 100 / cdpp, 2)
+
+if cantAB != 0:
+    prom = round(disAB / cantAB, 2)
+else:
+    prom = 0
 
 # Visualicación de resultados...
 print()
@@ -121,7 +147,18 @@ print('(r2) - Cantidad de patentes de Chile:', cchi)
 print('(r2) - Cantidad de patentes de Paraguay:', cpar)
 print('(r2) - Cantidad de patentes de Uruguay:', curu)
 print('(r2) - Cantidad de patentes de otro país:', cotr)
+
 print()
 print('(r3) - Importe acumulado total de importes finales:', imp_acu_total)
-print()
 
+print()
+print('(r4) - Primera patente del archivo:', primera, '- Frecuencia de aparición:', cpp)
+
+print()
+print('(r5) - Mayor importe final cobrado:', mayimp, '- Patente a la que se cobró ese importe:', maypat)
+
+print()
+print('(r6) - Porcentaje de patentes de otros países:', porc, '\b%')
+
+print()
+print('(r7) - Distancia promedio recorrida por vehículos argentinos pasando porcabinas brasileñas:', prom, '\bkm')
