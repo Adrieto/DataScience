@@ -13,3 +13,8 @@ def es_separador(car):
 def es_vocal(car):
     return car.lower() in "aeiouáéíóú"
 
+def es_consonante(car):
+    return car.isalpha() and not es_vocal(car)
+
+def es_minuscula(car):
+    return car == car.lower()
