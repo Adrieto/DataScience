@@ -31,10 +31,23 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/default.LAPTOP-6K5BGJEG/Desktop/SoftwareDevelopment/DataScience/Data Structures and Algorithms/Curso UTN/TP4/2023_AED_TP4_G001_Coppari_71233 [1k13]_Gonzalez_404201[1k13]_Parodi_404233[1k13].py&quot;,
+    &quot;two.files.diff.last.used.file&quot;: &quot;C:/Users/default.LAPTOP-6K5BGJEG/Desktop/SoftwareDevelopment/DataScience/Data Structures and Algorithms/Curso UTN/TP4/2023_AED_TP4_G001_Coppari_71233 [1k13]_Gonzalez_404201[1k13]_Parodi_404233[1k13].py&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\default.LAPTOP-6K5BGJEG\Desktop\SoftwareDevelopment\DataScience\Data Structures and Algorithms\Curso UTN\TP4" />
+      <recent name="C:\Users\default.LAPTOP-6K5BGJEG\Desktop\SoftwareDevelopment\DataScience\Data Structures and Algorithms\Curso UTN\TP3" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\default.LAPTOP-6K5BGJEG\Desktop\SoftwareDevelopment\DataScience\Data Structures and Algorithms\Curso UTN\desafio3" />
+      <recent name="C:\Users\default.LAPTOP-6K5BGJEG\Desktop\SoftwareDevelopment\DataScience\Data Structures and Algorithms\Curso UTN\" />
+      <recent name="C:\Users\default.LAPTOP-6K5BGJEG\Desktop\SoftwareDevelopment\DataScience\Data Structures and Algorithms\Curso UTN\TP3" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.Un11-Ej2">
     <configuration name="Un11-Ej2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Curso UTN" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -95,6 +108,17 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -102,6 +126,11 @@
           <url>file://$PROJECT_DIR$/Un14-Ej7.py</url>
           <line>74</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/VentaCruceros/principal.py</url>
+          <line>178</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
